@@ -2,6 +2,7 @@
 import subprocess
 import rospy
 import rosparam
+import math
 
 from std_msgs.msg import Float32MultiArray
 from pymycobot.mycobot import MyCobot
@@ -54,6 +55,7 @@ class MycobotHwInterface:
         for index, value in enumerate(msg.data):
             if index != 2:
                 value *= -1
+            value /= (2 * math.pi)
             data_list.append(value)
 
         if self.first_flag:
